@@ -1,8 +1,14 @@
 #include <Arduino.h>
 #include <FastLED.h>
 
-#include <TFT_eSPI.h> 
-#include <SPI.h>
+#include <stdbool.h>
+#include "soc/soc.h"
+#include "soc/gpio_periph.h"
+#include "soc/gpio_struct.h"
+#include "soc/rtc_cntl_reg.h"
+#include "soc/rtc_io_reg.h"
+#include "SPI.h"
+#include "TFT_eSPI.h"
 #include "WiFi.h"
 #include <Wire.h>
 #include <Button2.h>
@@ -48,8 +54,8 @@ int red = 1;
 int blue = 0;
 
 
-const char* ssid = "W146";
-const char* password = "komosa123";
+const char* ssid = "p-v";
+const char* password = "3.1415926";
 WebServer server(80);
 
 int counter = 0;
@@ -95,13 +101,13 @@ void handleNotFound() {
 
 void setup() 
 {
+  
   FastLED.addLeds<WS2812, 27, GRB>(leds, leds_num);
 
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("");
 
-  // Wait for connection
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
