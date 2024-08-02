@@ -134,12 +134,12 @@ void setup()
   Serial.println("HTTP server started");
 }
 
-// void turn_off()
-// {
-//   for (int i = 0; i <= 40; i++)
-//     leds[i] = CRGB(0, 0, 0);
-//   FastLED.show();
-// }
+void turn_off()
+{
+  for (int i = 0; i <= 40; i++)
+    leds[i] = CRGB(0, 0, 0);
+  FastLED.show();
+}
 
 
 void loop() 
